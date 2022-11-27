@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace JewerlyWork.Classes
 {
-    /// <summary>
-    /// Администратор.
-    /// </summary>
-    public class Administrator
+    public class User
     {
-        #region Поля и свойства.
-
+        #region Поля и свойства
         private int _id;
         /// <summary>
         /// Идентификатор.
@@ -58,13 +54,29 @@ namespace JewerlyWork.Classes
             }
         }
 
+        private string _role;
+        /// <summary>
+        /// Пароль.
+        /// </summary>
+        public string Role
+        {
+            get => _role;
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentNullException(nameof(value), "Пароль не может быть пустым или равен null!");
+                _role = value;
+            }
+        }
+
         #endregion
 
         public override string ToString()
         {
             return $"№ {Id} " +
                    $"Логин: {Login} " +
-                   $"Пароль: {Password}" +
+                   $"Пароль: {Password} " +
+                   $"Роль: {Role}" +
                    Environment.NewLine;
         }
     }

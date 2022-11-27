@@ -105,23 +105,15 @@ namespace JewerlyWork.Classes
 
         #endregion
 
-        /// <summary>
-        /// Изделие.
-        /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <param name="name"> Наименование изделия. </param>
-        /// <param name="type"> Тип изделия. </param>
-        /// <param name="material"> Материал изделия. </param>
-        /// <param name="weight"> Вес изделия. </param>
-        /// <param name="price"> Цена изделия. </param>
-        public Product(int id, string name, string type, string material, int weight, int price)
+        public override string ToString()
         {
-            Id = id;
-            ProductName = name;
-            ProductType = type;
-            ProductMaterial = material;
-            ProductWeight = weight;
-            ProductPrice = price;
+            return $"№ {Id} " +
+                   $"Наименование: {ProductName} " +
+                   $"Тип: {ProductType} " +
+                   $"Материал: {ProductMaterial} " +
+                   $"Вес: {ProductWeight} " +
+                   $"Цена: {ProductPrice}" +
+                   Environment.NewLine;
         }
     }
 }

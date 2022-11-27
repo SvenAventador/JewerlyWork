@@ -83,21 +83,32 @@ namespace JewerlyWork.Classes
             get => DateTime.Now.ToShortDateString();
         }
 
+        private int _allPrice;
+        /// <summary>
+        /// Общая цена
+        /// </summary>
+        public int AllPrice
+        {
+            get => _allPrice;
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException(nameof(value), "Цена не может быть меньше 0!");
+                _allPrice = value;
+            }
+        }
+
         #endregion
 
-        /// <summary>
-        /// Продажа изделия.
-        /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <param name="fio"> ФИО. </param>
-        /// <param name="name"> Наименование изделия. </param>
-        /// <param name="count"> Количество купленного изделия. </param>
-        public ProductSale(int id, string fio, string name, int count)
+        public override string ToString()
         {
-            Id = id;
-            FIO = fio;
-            ProductName = name;
-            ProductCount = count;
+            return $"№ {Id} " +
+                   $"ФИО: {FIO} " +
+                   $"Наименование: {ProductName} " +
+                   $"Количество: {ProductCount} " +
+                   $"Дата заказа: {SaleDate} " +
+                   $"Общая цена: {AllPrice}" +
+                   Environment.NewLine;
         }
     }
 }

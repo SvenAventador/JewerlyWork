@@ -36,20 +36,17 @@ namespace JewerlyWork.Classes
             {
                 if (string.IsNullOrEmpty(value))
                     throw new ArgumentNullException(nameof(value), "Тип изделия не может быть пустым или равняться null!");
+                _productType = value;
             }
         }
 
         #endregion
 
-        /// <summary>
-        /// Тип изделия.
-        /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <param name="type"> Тип изделия. </param>
-        public ProductType(int id, string type)
+        public override string ToString()
         {
-            Id = id;
-            ProductTypes = type;
+            return $"№ {Id} " +
+                   $"Тип {ProductTypes}" + 
+                   Environment.NewLine;
         }
     }
 }

@@ -84,27 +84,21 @@ namespace JewerlyWork.Classes
             {
                 if (value.Year - DateTime.Now.Year < 18)
                     throw new ArgumentOutOfRangeException(nameof(value), "К сожалению, в нашем магазине" +
-                                                                         " изделия могут покупать только соверщеннолетние!");
+                                                                         " изделия могут покупать только совершеннолетние!");
                 _dateOfBirth = value;
             }
         }
         #endregion
 
-        /// <summary>
-        /// Клиент.
-        /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <param name="surname"> Фамилия. </param>
-        /// <param name="name"> Имя. </param>
-        /// <param name="patronymic"> Отчество. </param>
-        /// <param name="bDate"> Дата рождения. </param>
-        public Client(int id, string surname, string name, string patronymic, DateTime bDate)
+        public override string ToString()
         {
-            Id = id;
-            Surname = surname;
-            Name = name;
-            Patronymic = patronymic;
-            DateOfBirth = bDate;
+            return $"№ {Id} " +
+                   $"Фамилия: {Surname} " +
+                   $"Имя: {Name} " +
+                   $"Отчество: {Patronymic} " +
+                   $"Дата рождения: {DateOfBirth}" +
+                   Environment.NewLine;
         }
+
     }
 }

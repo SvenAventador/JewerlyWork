@@ -57,17 +57,12 @@ namespace JewerlyWork.Classes
 
         #endregion
 
-        /// <summary>
-        /// Материал изделия.
-        /// </summary>
-        /// <param name="id"> Идентификатор. </param>
-        /// <param name="name"> Наименование материала. </param>
-        /// <param name="price"> Цена за грамм. </param>
-        public MaterialProduct(int id, string name, int price)
+        public override string ToString()
         {
-            Id = id;
-            MaterialName = name;
-            PricePerGramm = price;
+            return $"№ {Id} " +
+                   $"Наименование: {MaterialName} " +
+                   $"Цена: {PricePerGramm}" + 
+                   Environment.NewLine;
         }
     }
 }
