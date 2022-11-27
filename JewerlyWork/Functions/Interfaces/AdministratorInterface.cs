@@ -19,6 +19,9 @@ namespace JewerlyWork.Functions.Interfaces
         /// </summary>
         private static int _choice;
 
+        /// <summary>
+        /// Интерфейс администратора.
+        /// </summary>
         public static void AdminInterface()
         {
             Console.Clear();
@@ -57,6 +60,9 @@ namespace JewerlyWork.Functions.Interfaces
             }
         }
 
+        /// <summary>
+        /// Вспомогательный метод для выборки определенного действия.
+        /// </summary>
         private static void ImplementationAction()
         {
             Console.WriteLine("Выберите объект работы: \n" +

@@ -11,7 +11,15 @@ namespace JewerlyWork.Functions.Interfaces
     /// </summary>
     public static class ClientInterface
     {
+        /// <summary>
+        /// Определение действия над объектов (добавление / изменение / удаление изделия и т.п.)
+        /// </summary>
         private static int _choise;
+
+        /// <summary>
+        /// Интерфейс клиента.
+        /// </summary>
+        /// <param name="login"> Логин клиента. </param>
         public static void ClientInterfaces(string login)
         {
             Console.Clear();
@@ -49,6 +57,9 @@ namespace JewerlyWork.Functions.Interfaces
             }
         }
 
+        /// <summary>
+        /// Вспомогательный метод для выборки действия.
+        /// </summary>
         private static void ImplementationAction()
         {
             switch (_choise)
