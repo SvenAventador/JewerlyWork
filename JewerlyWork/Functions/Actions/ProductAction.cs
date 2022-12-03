@@ -20,10 +20,12 @@ namespace JewerlyWork.Functions.Actions
             var readFile = File.ReadAllLines(path);
 
             var name = Other.Validator.GetStringOnConsole("Пожалуйста, введите название: ");
+            Console.WriteLine(@"/--------------------------------\");
             using (var sR = new StreamReader(Other.PathData.pathToProductType))
             {
                 Console.WriteLine(sR.ReadToEnd());
             }
+
             START:
             var readType = File.ReadAllText(Other.PathData.pathToProductType);
             var type = Other.Validator.GetStringOnConsole("Пожалуйста, введите тип: ");
@@ -33,10 +35,12 @@ namespace JewerlyWork.Functions.Actions
                 goto START;
             }
 
+            Console.WriteLine(@"/--------------------------------\");
             using (var sR = new StreamReader(Other.PathData.pathToMaterialProduct))
             {
                 Console.WriteLine(sR.ReadToEnd());
-            }    
+            }
+
             START1:
             var readMaterial = File.ReadAllText(Other.PathData.pathToMaterialProduct);
             var material = Other.Validator.GetStringOnConsole("Пожалуйста, введите материал: ");
@@ -64,6 +68,8 @@ namespace JewerlyWork.Functions.Actions
 
             File.AppendAllText(path, product.ToString(), Encoding.UTF8);
             Console.WriteLine("Изделие успешно добавлено!");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
 
 
@@ -92,6 +98,8 @@ namespace JewerlyWork.Functions.Actions
 
             File.WriteAllText(path, string.Join(" ", changeData), Encoding.UTF8);
             Console.WriteLine("Данные успешно обновлены!");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
 
         /// <summary>
@@ -125,8 +133,10 @@ namespace JewerlyWork.Functions.Actions
                 File.AppendAllText(path, newLine.ToString() + Environment.NewLine);
 
             }
-            Console.WriteLine("Изделие под номером " + stringNumber.ToString() + " удален.");
             Thread.Sleep(0);
+            Console.WriteLine("Изделие под номером " + stringNumber.ToString() + " удален.");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
     }
 }

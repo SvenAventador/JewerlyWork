@@ -11,13 +11,6 @@ namespace JewerlyWork.Functions.Actions
     /// </summary>
     public static class ProductSaleAction
     {
-        /*            return $"№ {Id} " +
-                   $"ФИО: {FIO} " +
-                   $"Наименование: {ProductName} " +
-                   $"Количество: {ProductCount} " +
-                   $"Дата заказа: {SaleDate} " +
-                   $"Общая цена: {AllPrice}" +
-                   Environment.NewLine;*/
         /// <summary>
         /// Оформление заказа.
         /// </summary>
@@ -59,7 +52,9 @@ namespace JewerlyWork.Functions.Actions
             };
 
             File.AppendAllText(path, materialProduct.ToString(), Encoding.UTF8);
-            Console.Write("Заказ успешно оформлен!");
+            Console.WriteLine("Заказ успешно оформлен!");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
 
         /// <summary>
@@ -94,6 +89,8 @@ namespace JewerlyWork.Functions.Actions
 
             }
             Console.WriteLine("Изделие под номером " + stringNumber.ToString() + " удален.");
+            Thread.Sleep(3000);
+            Console.Clear();
             Thread.Sleep(0);
         }
 

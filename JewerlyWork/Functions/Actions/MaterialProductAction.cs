@@ -33,7 +33,9 @@ namespace JewerlyWork.Functions.Actions
             };
 
             File.AppendAllText(path, materialProduct.ToString(), Encoding.UTF8);
-            Console.Write("Материал успешно добавлен!");
+            Console.WriteLine("Материал успешно добавлен!");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
 
         /// <summary>
@@ -55,6 +57,8 @@ namespace JewerlyWork.Functions.Actions
                                             : 5] = newData;
             File.WriteAllText(path, String.Join(" ", changeData), Encoding.UTF8);
             Console.WriteLine("Данные успешно обновлены!");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
 
         /// <summary>
@@ -89,6 +93,8 @@ namespace JewerlyWork.Functions.Actions
 
             }
             Console.WriteLine("Материал под номером " + stringNumber.ToString() + " удален.");
+            Thread.Sleep(3000);
+            Console.Clear();
             Thread.Sleep(0);
         }
     }

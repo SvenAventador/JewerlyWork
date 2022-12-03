@@ -28,10 +28,10 @@ namespace JewerlyWork.Functions.Interfaces
             Functions.Actions.ClientAction.AddClient(Other.PathData.pathToClient);
             Console.Clear();
 
+            START:
             Console.WriteLine("Дорогой клиент. Что Вы хотите сделать?\n" +
                               "1) Просмотреть товары;\n" +
                               "2) Приобрести товары.");
-            START:
             int choiseAction = Other.Validator.GetPrintNumberOnConsole("Итак, Ваш выбор: ");
 
             if ((choiseAction == 1) ||
@@ -42,11 +42,9 @@ namespace JewerlyWork.Functions.Interfaces
                 {
                     case 1:
                         ImplementationAction();
-                        Task.Delay(10000);
                         goto START;
                     case 2:
                         ImplementationAction();
-                        Task.Delay(10000);
                         goto START;
                 }
             }
@@ -79,6 +77,8 @@ namespace JewerlyWork.Functions.Interfaces
                         {
                             Console.WriteLine(sR.ReadToEnd());
                         }
+                        Thread.Sleep(3000);
+                        Console.Clear();
                     }
 
                     else if (choiseAction == 2)
@@ -87,6 +87,8 @@ namespace JewerlyWork.Functions.Interfaces
                         {
                             Console.WriteLine(sR.ReadToEnd());
                         }
+                        Thread.Sleep(3000);
+                        Console.Clear();
                     }
 
                     else if (choiseAction == 3)
@@ -95,6 +97,8 @@ namespace JewerlyWork.Functions.Interfaces
                         {
                             Console.WriteLine(sR.ReadToEnd());
                         }
+                        Thread.Sleep(3000);
+                        Console.Clear();
                     }
 
                     else

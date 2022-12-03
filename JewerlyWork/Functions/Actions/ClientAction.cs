@@ -38,6 +38,8 @@ namespace JewerlyWork.Functions.Actions
 
             File.AppendAllText(path, client.ToString(), Encoding.UTF8);
             Console.WriteLine("Данные успешно добавлены!");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
 
         /// <summary>
@@ -64,6 +66,8 @@ namespace JewerlyWork.Functions.Actions
 
             File.WriteAllText(path, string.Join(" ", changeData), Encoding.UTF8);
             Console.WriteLine("Данные успешно обновлены!");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
 
         /// <summary>
@@ -97,8 +101,10 @@ namespace JewerlyWork.Functions.Actions
                 File.AppendAllText(path, newLine.ToString() + Environment.NewLine);
 
             }
-            Console.WriteLine("Клиент под номером " + stringNumber.ToString() + " удален.");
             Thread.Sleep(0);
+            Console.WriteLine("Клиент под номером " + stringNumber.ToString() + " удален.");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
     }
 }

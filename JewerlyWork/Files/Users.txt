@@ -1,5 +1,7 @@
-№ 1 Логин: 123456789 Пароль: пароль1 Роль: Client  
-№ 2 Логин: 123456789 Пароль: пароль1 Роль: Client  
-№ 3 Логин: 123 Пароль: 123 Роль: Admin № 5 Логин: 1234 Пароль: 1234 Роль: Client 
-№ 4 Логин: 12345 Пароль: 12345 Роль: Client 
-№ 5 Логин: 1 Пароль: 1 Роль: Client 
+№ 1 Логин: admin Пароль: admin Роль: Admin  
+№ 2 Логин: admin Пароль: client Роль: Client    
+№ 3 Логин: admin Пароль: client Роль: Client    
+№ 4 Логин: admin Пароль: client Роль: Client    
+№ 5 Логин: admin Пароль: client Роль: Client    
+№ 6 Логин: admin Пароль: client Роль: Client    
+№ 7 Логин: admin Пароль: adminCreate Роль: Client    

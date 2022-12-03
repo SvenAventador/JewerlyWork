@@ -31,7 +31,9 @@ namespace JewerlyWork.Functions.Actions
             };
 
             File.AppendAllText(path, type.ToString(), Encoding.UTF8);
-            Console.Write("Тип успешно добавлен!");
+            Console.WriteLine("Тип успешно добавлен!");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
 
         /// <summary>
@@ -51,6 +53,8 @@ namespace JewerlyWork.Functions.Actions
             changeData[3] = newData;
             File.WriteAllText(path, String.Join(" ", changeData), Encoding.UTF8);
             Console.WriteLine("Данные успешно обновлены!");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
 
         /// <summary>
@@ -83,6 +87,8 @@ namespace JewerlyWork.Functions.Actions
             }
             Console.WriteLine("Тип под номером " + stringNumber.ToString() + " удален.");
             Thread.Sleep(0);
+            Thread.Sleep(3000);
+            Console.Clear();
         }
     }
 }

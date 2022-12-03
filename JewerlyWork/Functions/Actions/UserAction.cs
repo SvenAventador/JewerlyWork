@@ -34,8 +34,10 @@ namespace JewerlyWork.Functions.Actions
                 Role = role
             };
 
-            File.AppendAllText(path, user.ToString(), Encoding.UTF8);
+            File.AppendAllText(path, user.ToString() + Environment.NewLine, Encoding.UTF8);
             Console.WriteLine("Успешно создана новая учетная запись!");
+            Thread.Sleep(3000);
+            Console.Clear();
         }
 
         /// <summary>
@@ -47,16 +49,19 @@ namespace JewerlyWork.Functions.Actions
         public static void UpdateDataUser(string path, int stringNumber, string action)
         {
             var readAllFile = File.ReadAllLines(path);
-            var certainString = File.ReadLines(path);
+            var certainString = readAllFile.Skip(stringNumber - 1).First().Split(' ');
 
-            var changeData = certainString.Skip(stringNumber - 1).First().Split(' ');
+            var newData = Other.Validator.GetStringOnConsole("Пожалуйста, введите новые данные: ");
 
-            var newData = Other.Validator.GetStringOnConsole("Введите новые данные: ");
+            certainString[action.ToLower() == "логин" ? 3
+                                                      : 5] = newData;
 
-            changeData[action == "Логин" ? 3
-                                         : 5] = newData;
-            File.WriteAllText(path, String.Join(" ", changeData), Encoding.UTF8);
-            Console.WriteLine("Данные успешно обновлены!");
+            readAllFile[stringNumber - 1] = String.Join(" ", certainString);
+
+            File.WriteAllLines(path, readAllFile);
+            Console.WriteLine("Данные успешно обновлены!"); 
+            Thread.Sleep(3000);
+            Console.Clear();
         }
 
         /// <summary>
@@ -89,6 +94,8 @@ namespace JewerlyWork.Functions.Actions
             }
             Console.WriteLine("Пользователь под номером " + stringNumber.ToString() + " удален.");
             Thread.Sleep(0);
+            Thread.Sleep(3000);
+            Console.Clear();
         }
     }
 }

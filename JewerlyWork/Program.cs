@@ -57,10 +57,15 @@ namespace JewerlyWork
                                 Functions.Interfaces.ClientInterface.ClientInterfaces(login);
                             }
                             else if ((login == dataArray[3]) &&
-                                (password == dataArray[5]) &&
-                                (dataArray[7] == "Admin"))
+                                     (password == dataArray[5]) &&
+                                     (dataArray[7] == "Admin"))
                             {
                                 Functions.Interfaces.AdministratorAction.AdminInterface();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Такой аккаунт не найден. Попробуйте еще раз!");
+                                goto START;
                             }
                         }
                         break;

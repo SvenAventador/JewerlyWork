@@ -25,31 +25,33 @@ namespace JewerlyWork.Functions.Interfaces
         public static void AdminInterface()
         {
             Console.Clear();
+            START:
             Console.WriteLine("Администратор системы. \n" +
                               "Выберите одну из опций: \n" +
-                              "1) Добавить запись\n" +
-                              "2) Изменить запись\n" +
-                              "3) Удалить запись\n");
-            START:
+                              "1) Просмотреть данные;\n" +
+                              "2) Добавить запись;\n" +
+                              "3) Изменить запись;\n" +
+                              "4) Удалить запись.\n");
             int choiceAction = Validator.GetPrintNumberOnConsole("Итак, Ваш выбор: ");
-            if (choiceAction == 1 ||
-                choiceAction == 2 ||
-                choiceAction == 3)
+            if ((choiceAction == 1) ||
+                (choiceAction == 2) ||
+                (choiceAction == 3) ||
+                (choiceAction == 4))
             {
                 _choice = choiceAction;
                 switch (choiceAction)
                 {
                     case 1:
                         ImplementationAction();
-                        Task.Delay(10000);
                         goto START;
                     case 2:
                         ImplementationAction();
-                        Task.Delay(10000);
                         goto START;
                     case 3:
                         ImplementationAction();
-                        Task.Delay(10000);
+                        goto START;
+                    case 4:
+                        ImplementationAction();
                         goto START;
                 }
             }
@@ -79,9 +81,18 @@ namespace JewerlyWork.Functions.Interfaces
                     #region CRUD над изделиями.
                     if (_choice == 1)
                     {
-                        Actions.ProductAction.AddProduct(PathData.pathToProduct);
+                        using (var sR = new StreamReader(Other.PathData.pathToProduct))
+                        {
+                            Console.WriteLine(sR.ReadToEnd());
+                        }
+                        Thread.Sleep(5000);
+                        Console.Clear();
                     }
                     if (_choice == 2)
+                    {
+                        Actions.ProductAction.AddProduct(PathData.pathToProduct);
+                    }
+                    if (_choice == 3)
                     {
                         START:
                         int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
@@ -107,7 +118,7 @@ namespace JewerlyWork.Functions.Interfaces
 
                         Actions.ProductAction.UpdateDataProduct(PathData.pathToProduct, stringNumber, action);
                     }
-                    if (_choice == 3)
+                    if (_choice == 4)
                     {
                         START:
                         int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
@@ -127,9 +138,18 @@ namespace JewerlyWork.Functions.Interfaces
                     #region CRUD над материалами.
                     if (_choice == 1)
                     {
-                        Actions.MaterialProductAction.AddMaterial(PathData.pathToMaterialProduct);
+                        using (var sR = new StreamReader(Other.PathData.pathToMaterialProduct))
+                        {
+                            Console.WriteLine(sR.ReadToEnd());
+                        }
+                        Thread.Sleep(5000);
+                        Console.Clear();
                     }
                     if (_choice == 2)
+                    {
+                        Actions.MaterialProductAction.AddMaterial(PathData.pathToMaterialProduct);
+                    }
+                    if (_choice == 3)
                     {
                         START:
                         var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
@@ -152,7 +172,7 @@ namespace JewerlyWork.Functions.Interfaces
                         }
                         Actions.MaterialProductAction.UpdateDataMaterial(PathData.pathToMaterialProduct, stringNumber, action);
                     }
-                    if (_choice == 3)
+                    if (_choice == 4)
                     {
                         START:
                         var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
@@ -172,9 +192,18 @@ namespace JewerlyWork.Functions.Interfaces
                     #region CRUD над типами изделия.
                     if (_choice == 1)
                     {
-                        Actions.ProductTypeAction.AddProductType(PathData.pathToProductType);
+                        using (var sR = new StreamReader(Other.PathData.pathToProductType))
+                        {
+                            Console.WriteLine(sR.ReadToEnd());
+                        }
+                        Thread.Sleep(5000);
+                        Console.Clear();
                     }
                     if (_choice == 2)
+                    {
+                        Actions.ProductTypeAction.AddProductType(PathData.pathToProductType);
+                    }
+                    if (_choice == 3)
                     {
                         START:
                         int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
@@ -188,7 +217,7 @@ namespace JewerlyWork.Functions.Interfaces
 
                         Actions.ProductTypeAction.UpdateProductType(PathData.pathToProductType, stringNumber);
                     }
-                    if (_choice == 3)
+                    if (_choice == 4)
                     {
                         START:
                         int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
@@ -208,9 +237,20 @@ namespace JewerlyWork.Functions.Interfaces
                     #region CRUD над клиентами.
                     if (_choice == 1)
                     {
-                        Console.WriteLine("Вы не можете добавить клиента в нашу систему!");
+                        using (var sR = new StreamReader(Other.PathData.pathToClient))
+                        {
+                            Console.WriteLine(sR.ReadToEnd());
+                        }
+                        Thread.Sleep(5000);
+                        Console.Clear();
                     }
                     if (_choice == 2)
+                    {
+                        Console.WriteLine("Вы не можете добавить клиента в нашу систему!");
+                        Thread.Sleep(3000);
+                        Console.Clear();
+                    }
+                    if (_choice == 3)
                     {
                         START:
                         int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
@@ -234,7 +274,7 @@ namespace JewerlyWork.Functions.Interfaces
                         }
                         Actions.ClientAction.UpdateDataClient(PathData.pathToClient, stringNumber, action);
                     }
-                    if (_choice == 3)
+                    if (_choice == 4)
                     {
                         START:
                         int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
@@ -253,13 +293,26 @@ namespace JewerlyWork.Functions.Interfaces
                     #region CRUD над заказами.
                     if (_choice == 1)
                     {
-                        Console.WriteLine("Вы не можете добавить заказ в нашу систему!");
+                        using (var sR = new StreamReader(Other.PathData.pathToProductSale))
+                        {
+                            Console.WriteLine(sR.ReadToEnd());
+                        }
+                        Thread.Sleep(5000);
+                        Console.Clear();
                     }
                     if (_choice == 2)
                     {
-                        Console.WriteLine("Вы не можете изменить заказ в нашей систему!");
+                        Console.WriteLine("Вы не можете добавить заказ в нашу систему!");
+                        Thread.Sleep(3000);
+                        Console.Clear();
                     }
                     if (_choice == 3)
+                    {
+                        Console.WriteLine("Вы не можете изменить заказ в нашей систему!");
+                        Thread.Sleep(3000);
+                        Console.Clear();
+                    }
+                    if (_choice == 4)
                     {
                         START:
                         int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
@@ -279,9 +332,15 @@ namespace JewerlyWork.Functions.Interfaces
                     #region CRUD над пользователями.
                     if (_choice == 1)
                     {
-                        Console.BackgroundColor = ConsoleColor.White;
-                        Console.ForegroundColor = ConsoleColor.Black;
-
+                        using (var sR = new StreamReader(Other.PathData.pathToUsers))
+                        {
+                            Console.WriteLine(sR.ReadToEnd());
+                        }
+                        Thread.Sleep(5000);
+                        Console.Clear();
+                    }
+                    if (_choice == 2)
+                    {
                         var login = Validator.GetStringOnConsole("Пожалуйста, введите логин: ");
                         var password = Validator.GetStringOnConsole("Пожалуйста, введите пароль: ");
 
@@ -294,9 +353,13 @@ namespace JewerlyWork.Functions.Interfaces
                             {
                                 Console.WriteLine(sR.ReadToEnd());
                             }
+                            Thread.Sleep(3000);
+                            Console.Clear();
                         }
                         else if (answer.ToLower() == "нет")
-                            break;
+                        {
+                            Console.Clear();
+                        }
                         else
                         {
                             Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
@@ -304,7 +367,7 @@ namespace JewerlyWork.Functions.Interfaces
                         }
                     }
 
-                    if (_choice == 2)
+                    if (_choice == 3)
                     {
 
                         START:
@@ -316,19 +379,41 @@ namespace JewerlyWork.Functions.Interfaces
                             goto START;
                         }
                         START1:
-                        Console.Write("Какие данные (Логин / Пароль) Вы хотите изменить?");
+                        Console.Write("Какие данные (Логин / Пароль) Вы хотите изменить? ");
                         var action = Validator.GetStringOnConsole("Ваш ответ: ");
-                        if ((action.ToLower() != "логин") ||
-                            (action.ToLower() != "пароль"))
+                        Console.WriteLine(action.ToLower());
+                        if ((action.ToLower() != "логин".ToLower()) &&
+                            (action.ToLower() != "пароль".ToLower()))
                         {
-                            Console.WriteLine("Введена неверная команжа. Попробуйте еще раз!");
+                            Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                             goto START1;
                         }    
 
                         UserAction.UpdateDataUser(PathData.pathToUsers, stringNumber, action);
+
+                        START2:
+                        var answer = Validator.GetStringOnConsole("Хотите просмотреть всех пользователей? Ваш ответ: ");
+                        if (answer.ToLower() == "да")
+                        {
+                            using (var sR = new StreamReader(PathData.pathToUsers))
+                            {
+                                Console.WriteLine(sR.ReadToEnd());
+                            }
+                            Thread.Sleep(3000);
+                            Console.Clear();
+                        }
+                        else if (answer.ToLower() == "нет")
+                        {
+                            Console.Clear();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
+                            goto START2;
+                        }
                     }
 
-                    if (_choice == 3)
+                    if (_choice == 4)
                     {
                         START:
                         var stringNumber = Validator.GetPrintNumberOnConsole("Введите номер пользователя, данные которого Вы хотите изменить: ");
@@ -348,9 +433,13 @@ namespace JewerlyWork.Functions.Interfaces
                             {
                                 Console.WriteLine(sR.ReadToEnd());
                             }
+                            Thread.Sleep(3000);
+                            Console.Clear();
                         }
                         else if (answer.ToLower() == "нет")
-                            break;
+                        {
+                            Console.Clear();
+                        }
                         else
                         {
                             Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
