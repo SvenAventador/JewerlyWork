@@ -51,20 +51,17 @@ namespace JewerlyWork.Functions.Actions
         public static void UpdateDataClient(string path, int stringNumber, string action)
         {
             var readAllFile = File.ReadAllLines(path);
-            var certainString = File.ReadLines(path);
-
-            var changeData = certainString.Skip(stringNumber - 1).First().Split(' ');
-
-            var arrayCount = (action == "Фамилия") ? 3
-                                                  : (action == "Имя") ? 5
-                                                                      : (action == "Отчество") ? 7
-                                                                                               : 9;
+            var certainString = readAllFile.Skip(stringNumber - 1).First().Split(' ');
 
             var newData = Other.Validator.GetStringOnConsole("Пожалуйста, введите новые данные: ");
 
-            changeData[arrayCount] = newData;
+            certainString[action.ToLower() == "фамилия" ? 3
+                                                        : (action.ToLower() == "имя") ? 5
+                                                                                      : 7] = newData;
 
-            File.WriteAllText(path, string.Join(" ", changeData), Encoding.UTF8);
+            readAllFile[stringNumber - 1] = String.Join(" ", certainString);
+
+            File.WriteAllLines(path, readAllFile);
             Console.WriteLine("Данные успешно обновлены!");
             Thread.Sleep(3000);
             Console.Clear();

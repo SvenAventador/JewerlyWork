@@ -1,7 +1,0 @@
-№ 1 Логин: admin Пароль: admin Роль: Admin  
-№ 2 Логин: admin Пароль: client Роль: Client    
-№ 3 Логин: admin Пароль: client Роль: Client    
-№ 4 Логин: admin Пароль: client Роль: Client    
-№ 5 Логин: admin Пароль: client Роль: Client    
-№ 6 Логин: admin Пароль: client Роль: Client    
-№ 7 Логин: admin Пароль: adminCreate Роль: Client    

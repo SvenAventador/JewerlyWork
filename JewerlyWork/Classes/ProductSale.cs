@@ -22,7 +22,7 @@ namespace JewerlyWork.Classes
             get => _id;
             set
             {
-                if (value > 0)
+                if (value < 0)
                     throw new ArgumentOutOfRangeException(nameof(value), "Идентификатор должен быть больше или равен 1!");
                 _id = value;
             }

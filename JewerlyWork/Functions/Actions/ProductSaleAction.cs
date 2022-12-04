@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Threading;
 
 namespace JewerlyWork.Functions.Actions
 {
@@ -18,26 +20,30 @@ namespace JewerlyWork.Functions.Actions
         public static void AddOrder(string path)
         {
             var readFile = File.ReadAllLines(path);
-
+            START:
             var fio = Other.Validator.GetStringOnConsole("Пожалуйста, введите Ваше ФИО: ");
+            if (fio.Split(' ').GetLength(0) != 3)
+            {
+                Console.WriteLine("Вы должны ввести Фамилию Имя Отчество. Попробуйте еще раз!");
+                goto START;
+            }
 
             using (var sR = new StreamReader(Other.PathData.pathToProduct))
             {
                 Console.WriteLine(sR.ReadToEnd());
             }
-            START:
+            START1:
             var name = Other.Validator.GetStringOnConsole("Пожалуйста, введите наименование: ");
             var readName = File.ReadAllText(Other.PathData.pathToProduct);
-            if (readName.Contains(name))
+            if (!(readName.Contains(name)))
             {
                 Console.WriteLine("Такого изделия нет. Попробуйте еще раз!");
-                goto START;
+                goto START1;
             }
 
             var count = Other.Validator.GetPrintNumberOnConsole("Пожалуйста, введите количество изделия: ");
-            var readCertainString = File.ReadLines(Other.PathData.pathToProduct).Where(x => x == name).First().Split(' ');
 
-            var price = count * Convert.ToInt32(readCertainString[11]);
+            var price = Other.Validator.GetPrintNumberOnConsole("Пожалуйста, введите цену товара, которая указана на прилавке: ") * count;
 
             var materialProduct = new Classes.ProductSale()
             {

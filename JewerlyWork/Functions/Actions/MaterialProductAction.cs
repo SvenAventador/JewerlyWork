@@ -47,15 +47,16 @@ namespace JewerlyWork.Functions.Actions
         public static void UpdateDataMaterial(string path, int stringNumber, string action)
         {
             var readAllFile = File.ReadAllLines(path);
-            var certainString = File.ReadLines(path);
+            var certainString = readAllFile.Skip(stringNumber - 1).First().Split(' ');
 
-            var changeData = certainString.Skip(stringNumber - 1).First().Split(' ');
+            var newData = Other.Validator.GetStringOnConsole("Пожалуйста, введите новые данные: ");
 
-            var newData = Other.Validator.GetStringOnConsole("Введите новые данные: ");
+            certainString[action.ToLower() == "название" ? 3
+                                                        : 5] = newData;
 
-            changeData[action == "Название" ? 3
-                                            : 5] = newData;
-            File.WriteAllText(path, String.Join(" ", changeData), Encoding.UTF8);
+            readAllFile[stringNumber - 1] = String.Join(" ", certainString);
+
+            File.WriteAllLines(path, readAllFile);
             Console.WriteLine("Данные успешно обновлены!");
             Thread.Sleep(3000);
             Console.Clear();

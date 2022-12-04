@@ -54,7 +54,7 @@ namespace JewerlyWork.Functions.Other
                 goto START;
             }
 
-            return DateTime.Parse(yourDate);
+            return DateTime.Parse(DateTime.Parse(yourDate).ToShortDateString());
         }
 
         /// <summary>

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace JewerlyWork.Classes
 {
+    /// <summary>
+    /// Пользователь (для регистрации).
+    /// </summary>
     public class User
     {
         #region Поля и свойства
@@ -56,7 +59,7 @@ namespace JewerlyWork.Classes
 
         private string _role;
         /// <summary>
-        /// Пароль.
+        /// Роль.
         /// </summary>
         public string Role
         {
@@ -71,6 +74,7 @@ namespace JewerlyWork.Classes
 
         #endregion
 
+        #region Методы
         public override string ToString()
         {
             return $"№ {Id} " +
@@ -78,5 +82,6 @@ namespace JewerlyWork.Classes
                    $"Пароль: {Password} " +
                    $"Роль: {Role}";
         }
+        #endregion
     }
 }

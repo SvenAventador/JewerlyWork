@@ -31,11 +31,13 @@ namespace JewerlyWork.Functions.Interfaces
             START:
             Console.WriteLine("Дорогой клиент. Что Вы хотите сделать?\n" +
                               "1) Просмотреть товары;\n" +
-                              "2) Приобрести товары.");
+                              "2) Приобрести товары;\n" +
+                              "3) Выход.\n");
             int choiseAction = Other.Validator.GetPrintNumberOnConsole("Итак, Ваш выбор: ");
 
             if ((choiseAction == 1) ||
-                (choiseAction == 2))
+                (choiseAction == 2) ||
+                (choiseAction == 3))
             {
                 _choise = choiseAction;
                 switch (choiseAction)
@@ -46,6 +48,10 @@ namespace JewerlyWork.Functions.Interfaces
                     case 2:
                         ImplementationAction();
                         goto START;
+                    case 3:
+                        Console.Clear();
+                        Program.RegAuthUser();
+                        break;
                 }
             }
             else
@@ -64,9 +70,10 @@ namespace JewerlyWork.Functions.Interfaces
             {
                 case 1:
                     Console.WriteLine("Выберите объект работы: \n" +
-                                      "1) Изделие\n" +
-                                      "2) Материал\n" +
-                                      "3) Тип изделия\n");
+                                      "1) Изделие;\n" +
+                                      "2) Материал;\n" +
+                                      "3) Тип изделия;\n" +
+                                      "4) Выход.\n");
                     START:
                     int choiseAction = Other.Validator.GetPrintNumberOnConsole("Итак, Ваш выбор: ");
                     #region Выбор вывода данных.

@@ -82,21 +82,19 @@ namespace JewerlyWork.Functions.Actions
         public static void UpdateDataProduct(string path, int stringNumber, string action)
         {
             var readAllFile = File.ReadAllLines(path);
-            var certainString = File.ReadLines(path);
-
-            var changeData = certainString.Skip(stringNumber - 1).First().Split(' ');
-
-            var arrayCount = (action == "Название") ? 3
-                                                  : (action == "Тип") ? 5
-                                                                      : (action == "Материал") ? 7
-                                                                                               : (action == "Вес") ? 9
-                                                                                                                   : 10;
+            var certainString = readAllFile.Skip(stringNumber - 1).First().Split(' ');
 
             var newData = Other.Validator.GetStringOnConsole("Пожалуйста, введите новые данные: ");
 
-            changeData[arrayCount] = newData;
+            certainString[action.ToLower() == "название" ? 3
+                                                        : (action.ToLower() == "тип") ? 5
+                                                                                      : (action.ToLower() == "материал") ? 7
+                                                                                                                         : (action.ToLower() == "вес") ? 9
+                                                                                                                                                       : 11] = newData;
 
-            File.WriteAllText(path, string.Join(" ", changeData), Encoding.UTF8);
+            readAllFile[stringNumber - 1] = String.Join(" ", certainString);
+
+            File.WriteAllLines(path, readAllFile);
             Console.WriteLine("Данные успешно обновлены!");
             Thread.Sleep(3000);
             Console.Clear();

@@ -22,7 +22,7 @@ namespace JewerlyWork.Classes
             get => _id;
             set
             {
-                if (value > 0)
+                if (value < 0)
                     throw new ArgumentOutOfRangeException(nameof(value), "Идентификатор должен быть больше или равен 1!");
                 _id = value;
             }
@@ -82,10 +82,10 @@ namespace JewerlyWork.Classes
             get => _dateOfBirth;
             set
             {
-                if (value.Year - DateTime.Now.Year < 18)
+                if (DateTime.Now.Year - value.Year < 18)
                     throw new ArgumentOutOfRangeException(nameof(value), "К сожалению, в нашем магазине" +
                                                                          " изделия могут покупать только совершеннолетние!");
-                _dateOfBirth = value;
+                _dateOfBirth = DateTime.Parse(value.ToShortDateString());
             }
         }
         #endregion
@@ -96,7 +96,7 @@ namespace JewerlyWork.Classes
                    $"Фамилия: {Surname} " +
                    $"Имя: {Name} " +
                    $"Отчество: {Patronymic} " +
-                   $"Дата рождения: {DateOfBirth}" +
+                   $"Дата рождения: {Convert.ToString(DateOfBirth.ToShortDateString())}" +
                    Environment.NewLine;
         }
 
