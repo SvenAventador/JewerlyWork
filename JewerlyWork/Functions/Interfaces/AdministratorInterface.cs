@@ -73,6 +73,7 @@ namespace JewerlyWork.Functions.Interfaces
         /// </summary>
         private static void ImplementationAction()
         {
+            Console.Clear();
             Console.WriteLine("Выберите объект работы: \n" +
                               "1) Изделие;\n" +
                               "2) Материал;\n" +
@@ -143,11 +144,11 @@ namespace JewerlyWork.Functions.Interfaces
 
                             START1:
                             var action = Validator.GetStringOnConsole("Введите то, что Вы хотите изменить (Название, Тип, Материал, Вес, Цена): ");
-                            if ((action != "Название") &&
-                                (action != "Тип") &&
-                                (action != "Материал") &&
-                                (action != "Вес") &&
-                                (action != "Цена"))
+                            if ((action.ToLower() != "название") &&
+                                (action.ToLower() != "тип") &&
+                                (action.ToLower() != "материал") &&
+                                (action.ToLower() != "вес") &&
+                                (action.ToLower() != "цена"))
                             {
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START1;
@@ -261,8 +262,8 @@ namespace JewerlyWork.Functions.Interfaces
                             START1:
                             var action = Other.Validator.GetStringOnConsole("Введите то, что хотите изменить (Название, цена): ");
 
-                            if ((action.ToLower() != "Название") &&
-                                (action.ToLower() != "Цена"))
+                            if ((action.ToLower() != "название") &&
+                                (action.ToLower() != "цена"))
                             {
                                 Console.WriteLine("Введена неправильная команда. Попробуйте еще раз!");
                                 goto START1;
@@ -461,9 +462,9 @@ namespace JewerlyWork.Functions.Interfaces
                             START1:
                             var action = Validator.GetStringOnConsole("Введите то, что Вы хотите изменить (Фамилия, Имя, Отчество): ");
 
-                            if ((action != "Фамилия") &&
-                                (action != "Имя") &&
-                                (action != "Отчество"))
+                            if ((action.ToLower() != "фамилия") &&
+                                (action.ToLower() != "имя") &&
+                                (action.ToLower() != "отчество"))
                             {
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START1;
@@ -638,8 +639,8 @@ namespace JewerlyWork.Functions.Interfaces
                             Console.Write("Какие данные (Логин / Пароль) Вы хотите изменить? ");
                             var action = Validator.GetStringOnConsole("Ваш ответ: ");
                             Console.WriteLine(action.ToLower());
-                            if ((action.ToLower() != "логин".ToLower()) &&
-                                (action.ToLower() != "пароль".ToLower()))
+                            if ((action.ToLower() != "логин") &&
+                                (action.ToLower() != "пароль"))
                             {
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START1;

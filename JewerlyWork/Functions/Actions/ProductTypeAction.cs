@@ -30,7 +30,7 @@ namespace JewerlyWork.Functions.Actions
                 ProductTypes = productType
             };
 
-            File.AppendAllText(path, type.ToString(), Encoding.UTF8);
+            File.AppendAllText(path, type.ToString());
             Console.WriteLine("Тип успешно добавлен!");
             Thread.Sleep(3000);
             Console.Clear();

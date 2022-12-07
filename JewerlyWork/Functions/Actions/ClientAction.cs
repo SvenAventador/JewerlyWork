@@ -61,7 +61,7 @@ namespace JewerlyWork.Functions.Actions
 
             readAllFile[stringNumber - 1] = String.Join(" ", certainString);
 
-            File.WriteAllLines(path, readAllFile);
+            File.WriteAllLines(path, readAllFile, Encoding.UTF8);
             Console.WriteLine("Данные успешно обновлены!");
             Thread.Sleep(3000);
             Console.Clear();
@@ -95,7 +95,7 @@ namespace JewerlyWork.Functions.Actions
 
                 Console.Write(newLine);
                 Console.WriteLine();
-                File.AppendAllText(path, newLine.ToString() + Environment.NewLine);
+                File.AppendAllText(path, newLine.ToString() + Environment.NewLine, Encoding.UTF8);
 
             }
             Thread.Sleep(0);

@@ -25,6 +25,8 @@ namespace JewerlyWork.Functions.Other
             while (!int.TryParse(Console.ReadLine(), out value))
             {
                 Console.WriteLine("Пожалуйста, введите число! Введите данные еще раз.");
+                Thread.Sleep(3000);
+                Console.Clear();
                 Console.Write(message);
             }
 
@@ -51,6 +53,8 @@ namespace JewerlyWork.Functions.Other
                                          out sheduleDate))
             {
                 Console.WriteLine($"Дата рождения должна быть внесена следующим форматом: {dateFormat}");
+                Thread.Sleep(3000);
+                Console.Clear();
                 goto START;
             }
 
@@ -71,6 +75,8 @@ namespace JewerlyWork.Functions.Other
             if (string.IsNullOrEmpty(value))
             {
                 Console.WriteLine("Пожалуйста, введите значение!");
+                Thread.Sleep(3000);
+                Console.Clear();
                 goto START;
             }
 

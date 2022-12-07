@@ -57,7 +57,7 @@ namespace JewerlyWork.Functions.Actions
                 AllPrice = price
             };
 
-            File.AppendAllText(path, materialProduct.ToString(), Encoding.UTF8);
+            File.AppendAllText(path, materialProduct.ToString());
             Console.WriteLine("Заказ успешно оформлен!");
             Thread.Sleep(3000);
             Console.Clear();

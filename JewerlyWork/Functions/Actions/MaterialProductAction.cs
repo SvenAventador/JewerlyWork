@@ -32,7 +32,7 @@ namespace JewerlyWork.Functions.Actions
                 PricePerGramm = pricePerGramm,
             };
 
-            File.AppendAllText(path, materialProduct.ToString(), Encoding.UTF8);
+            File.AppendAllText(path, materialProduct.ToString());
             Console.WriteLine("Материал успешно добавлен!");
             Thread.Sleep(3000);
             Console.Clear();

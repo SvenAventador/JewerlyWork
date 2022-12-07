@@ -66,7 +66,7 @@ namespace JewerlyWork.Functions.Actions
                 ProductPrice = price
             };
 
-            File.AppendAllText(path, product.ToString(), Encoding.UTF8);
+            File.AppendAllText(path, product.ToString());
             Console.WriteLine("Изделие успешно добавлено!");
             Thread.Sleep(3000);
             Console.Clear();
@@ -87,7 +87,7 @@ namespace JewerlyWork.Functions.Actions
             var newData = Other.Validator.GetStringOnConsole("Пожалуйста, введите новые данные: ");
 
             certainString[action.ToLower() == "название" ? 3
-                                                        : (action.ToLower() == "тип") ? 5
+                                                         : (action.ToLower() == "тип") ? 5
                                                                                       : (action.ToLower() == "материал") ? 7
                                                                                                                          : (action.ToLower() == "вес") ? 9
                                                                                                                                                        : 11] = newData;
@@ -128,7 +128,7 @@ namespace JewerlyWork.Functions.Actions
 
                 Console.Write(newLine);
                 Console.WriteLine();
-                File.AppendAllText(path, newLine.ToString() + Environment.NewLine);
+                File.AppendAllText(path, newLine.ToString() + Environment.NewLine, Encoding.UTF8);
 
             }
             Thread.Sleep(0);
