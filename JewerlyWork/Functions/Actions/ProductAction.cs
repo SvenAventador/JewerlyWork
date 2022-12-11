@@ -27,11 +27,26 @@ namespace JewerlyWork.Functions.Actions
             }
 
             START:
-            var readType = File.ReadAllText(Other.PathData.pathToProductType);
+            var readType = File.ReadAllLines(Other.PathData.pathToProductType);
             var type = Other.Validator.GetStringOnConsole("Пожалуйста, введите тип: ");
-            if (!(readType.Contains(type)))
+            var typeFlag = false;
+
+            foreach (var item in readType)
             {
-                Console.WriteLine("Такого типа не найдено! Попробуйте еще раз!");
+                var dataArray = item.Split(' ');
+
+                if (type == dataArray[3])
+                {
+                    typeFlag = true;
+                    break;
+                }
+                else
+                    typeFlag = false;
+            }
+
+            if (!(typeFlag))
+            {
+                Console.WriteLine("Такого типа не найдено. Попробуйте еще раз!");
                 goto START;
             }
 
@@ -42,11 +57,26 @@ namespace JewerlyWork.Functions.Actions
             }
 
             START1:
-            var readMaterial = File.ReadAllText(Other.PathData.pathToMaterialProduct);
+            var readMaterial = File.ReadAllLines(Other.PathData.pathToMaterialProduct);
             var material = Other.Validator.GetStringOnConsole("Пожалуйста, введите материал: ");
-            if (!(readMaterial.Contains(material)))
+            var materialFlag = false;
+
+            foreach (var item in readMaterial)
             {
-                Console.WriteLine("Такого материала не найдено! Попробуйте еще раз!");
+                var dataArray = item.Split(' ');
+
+                if (material == dataArray[4])
+                {
+                    materialFlag = true;
+                    break;
+                }
+                else
+                    materialFlag = false;
+            }
+
+            if (!(materialFlag))
+            {
+                Console.WriteLine("Данного материала не найдено. Пожалуйста, введите данные еще раз!");
                 goto START1;
             }
 

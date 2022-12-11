@@ -34,10 +34,25 @@ namespace JewerlyWork.Functions.Actions
             }
             START1:
             var name = Other.Validator.GetStringOnConsole("Пожалуйста, введите наименование: ");
-            var readName = File.ReadAllText(Other.PathData.pathToProduct);
-            if (!(readName.Contains(name)))
+            var readName = File.ReadAllLines(Other.PathData.pathToProduct);
+            var nameFlag = false;
+
+            foreach (var item in readName)
             {
-                Console.WriteLine("Такого изделия нет. Попробуйте еще раз!");
+                var dataArray = item.Split(' ');
+
+                if (name == dataArray[3])
+                {
+                    nameFlag = true;
+                    break;
+                }
+                else
+                    nameFlag = false;
+            }
+
+            if (!(nameFlag))
+            {
+                Console.WriteLine("У нас не найден такой товар. Попробуйте ввести данные еще раз!");
                 goto START1;
             }
 
@@ -52,7 +67,8 @@ namespace JewerlyWork.Functions.Actions
             {
                 var dataArray = item.Split(' ');
 
-                if (price.ToString() == dataArray[11])
+                if ((name == dataArray[3]) &&
+                    (price.ToString() == dataArray[11]))
                 {
                     flag = true;
                     break;
