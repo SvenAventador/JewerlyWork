@@ -24,6 +24,7 @@ namespace JewerlyWork.Functions.Interfaces
         {
             Console.Clear();
             Console.WriteLine($"Добро пожаловать, {login}, в наш магазин ювелирных изделий. \n" +
+                              $"После введения своих данных вы станете постоянным клиентом и получите скидку 3%. \n" +
                               $"Перед тем, как перейти к покупкам, введите, пожалуйста, свои личные данные в систему.");
             Functions.Actions.ClientAction.AddClient(Other.PathData.pathToClient);
             Console.Clear();

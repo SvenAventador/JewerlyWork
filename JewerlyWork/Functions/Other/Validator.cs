@@ -25,8 +25,25 @@ namespace JewerlyWork.Functions.Other
             while (!int.TryParse(Console.ReadLine(), out value))
             {
                 Console.WriteLine("Пожалуйста, введите число! Введите данные еще раз.");
-                Thread.Sleep(3000);
-                Console.Clear();
+                Console.Write(message);
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// Проверка на то, было ли введено в консоль денежное значение.
+        /// </summary>
+        /// <param name="message"> Сообщение. </param>
+        /// <returns> Денежное значение, введенное с клавиатуры. </returns>
+        public static decimal GetPrintMoneyOnConsole(string message)
+        {
+            Console.Write(message);
+
+            var value = 0M;
+            while (!decimal.TryParse(Console.ReadLine(), out value))
+            {
+                Console.WriteLine("Пожалуйста, введите денежное значение! Введите данные еще раз.");
                 Console.Write(message);
             }
 
@@ -53,8 +70,6 @@ namespace JewerlyWork.Functions.Other
                                          out sheduleDate))
             {
                 Console.WriteLine($"Дата рождения должна быть внесена следующим форматом: {dateFormat}");
-                Thread.Sleep(3000);
-                Console.Clear();
                 goto START;
             }
 
@@ -75,8 +90,6 @@ namespace JewerlyWork.Functions.Other
             if (string.IsNullOrEmpty(value))
             {
                 Console.WriteLine("Пожалуйста, введите значение!");
-                Thread.Sleep(3000);
-                Console.Clear();
                 goto START;
             }
 

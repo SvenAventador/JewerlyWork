@@ -43,7 +43,31 @@ namespace JewerlyWork.Functions.Actions
 
             var count = Other.Validator.GetPrintNumberOnConsole("Пожалуйста, введите количество изделия: ");
 
-            var price = Other.Validator.GetPrintNumberOnConsole("Пожалуйста, введите цену товара, которая указана на прилавке: ") * count * 0.97M;
+            START2:
+            var price = Other.Validator.GetPrintMoneyOnConsole("Пожалуйста, введите цену товара, которая указана на прилавке: ");
+            var readPrice = File.ReadAllLines(Other.PathData.pathToProduct);
+            var flag = false;
+
+            foreach (var item in readPrice)
+            {
+                var dataArray = item.Split(' ');
+
+                if (price.ToString() == dataArray[11])
+                {
+                    flag = true;
+                    break;
+                }
+                else
+                    flag = false;
+            }
+
+            if (!(flag))
+            {
+                Console.WriteLine("Не пытайтесь нас обмануть! Данного ценника нет на прилавке! Введите данные еще раз!");
+                goto START2;
+            }
+
+            price = price * count * 0.97M;
 
             var productSale = new Classes.ProductSale()
             {
@@ -62,13 +86,14 @@ namespace JewerlyWork.Functions.Actions
 
             var amount = 0M;
             var readAllLines = File.ReadAllLines(path);
+
             for (var i = 1; i < readAllLines.Length; i++)
             {
                 var dataArray = readAllLines[i].Split(' ');
                 amount += Convert.ToDecimal(dataArray[15]);
             }
 
-            readAllLines[0] = $"Общая выручка: {amount}";
+            readAllLines[0] = $"Общая выручка: {amount} рублей.";
 
             File.WriteAllLines(path, readAllLines);
 
