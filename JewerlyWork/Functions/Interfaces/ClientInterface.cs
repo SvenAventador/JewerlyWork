@@ -22,11 +22,58 @@ namespace JewerlyWork.Functions.Interfaces
         /// <param name="login"> Логин клиента. </param>
         public static void ClientInterfaces(string login)
         {
+            START1:
             Console.Clear();
             Console.WriteLine($"Добро пожаловать, {login}, в наш магазин ювелирных изделий. \n" +
                               $"Вы являетесь нашим постоянным покупателем?");
-            Functions.Actions.ClientAction.AddClient(Other.PathData.pathToClient);
-            Console.Clear();
+            var answer = Other.Validator.GetStringOnConsole("Итак, Ваш ответ: ");
+
+            if (answer.ToLower() == "да")
+            {
+                var readClient = File.ReadAllLines(Other.PathData.pathToClient);
+                var surname = Other.Validator.GetStringOnConsole("Пожалуйста, введите Вашу фамилию для проверки: ");
+                var name = Other.Validator.GetStringOnConsole("Пожалуйста, введите Ваше имя для проверки: ");
+                var patronymic = Other.Validator.GetStringOnConsole("Пожалуйста, введите Ваше отчество для проверки: ");
+                var fioFlag = false;
+
+                foreach (var item in readClient)
+                {
+                    var dataArray = item.Split(' ');
+
+                    if (
+                        ($"{surname.ToLower()} {name.ToLower()} {patronymic.ToLower()}")
+                        ==
+                        ($"{dataArray[3].ToLower()} {dataArray[5].ToLower()} {dataArray[7].ToLower()}"))
+                    {
+                        Console.WriteLine($"Добро пожаловать, {name} {patronymic}!");
+                        Thread.Sleep(3000);
+                        Console.Clear();
+                        fioFlag = true;
+                        break;
+                    }
+                    else
+                        fioFlag = false;
+                }
+
+                if (!(fioFlag))
+                {
+                    Console.WriteLine("Вы уверены, что являетесь нашим постоянным покупателем? Вас нет в нашей базе. Попробуйте ввести данные еще раз!");
+                    Thread.Sleep(3000);
+                    goto START1;
+                }
+            }
+
+            else if (answer.ToLower() == "нет")
+            {
+                Functions.Actions.ClientAction.AddClient(Other.PathData.pathToClient);
+                Console.Clear();
+            }
+            else
+            {
+                Console.WriteLine("Неизвестная команда. Попробуйте еще раз.");
+                Thread.Sleep(3000);
+                goto START1;
+            }
 
             START:
             Console.WriteLine("Дорогой клиент. Что Вы хотите сделать?\n" +

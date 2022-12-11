@@ -22,9 +22,33 @@ namespace JewerlyWork.Functions.Actions
             var readFile = File.ReadAllLines(path);
             START:
             var fio = Other.Validator.GetStringOnConsole("Пожалуйста, введите Ваше ФИО: ");
+            var readClient = File.ReadAllLines(Other.PathData.pathToClient);
+            var clientFlag = false;
+
             if (fio.Split(' ').GetLength(0) != 3)
             {
                 Console.WriteLine("Вы должны ввести Фамилию Имя Отчество. Попробуйте еще раз!");
+                goto START;
+            }
+
+            foreach (var item in readClient)
+            {
+                var dataArray = item.Split(' ');
+
+                if (($"{fio.ToLower()}")
+                    ==
+                    ($"{dataArray[3].ToLower()} {dataArray[5].ToLower()} {dataArray[7].ToLower()}"))
+                {
+                    clientFlag = true;
+                    break;
+                }
+                else
+                    clientFlag = false;
+            }
+
+            if (!(clientFlag))
+            {
+                Console.WriteLine("Таких данных не найдено в системе. Введите данные еще раз!");
                 goto START;
             }
 
