@@ -80,7 +80,8 @@ namespace JewerlyWork.Classes
             return $"№ {Id} " +
                    $"Логин: {Login} " +
                    $"Пароль: {Password} " +
-                   $"Роль: {Role}";
+                   $"Роль: {Role}" + 
+                   Environment.NewLine;
         }
         #endregion
     }

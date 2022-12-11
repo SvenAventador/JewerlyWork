@@ -83,11 +83,11 @@ namespace JewerlyWork.Classes
             get => DateTime.Now.ToShortDateString();
         }
 
-        private int _allPrice;
+        private decimal _allPrice;
         /// <summary>
         /// Общая цена
         /// </summary>
-        public int AllPrice
+        public decimal AllPrice
         {
             get => _allPrice;
             set
