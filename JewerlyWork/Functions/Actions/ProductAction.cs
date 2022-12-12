@@ -65,7 +65,7 @@ namespace JewerlyWork.Functions.Actions
             {
                 var dataArray = item.Split(' ');
 
-                if (material == dataArray[4])
+                if (material == dataArray[3])
                 {
                     materialFlag = true;
                     break;
