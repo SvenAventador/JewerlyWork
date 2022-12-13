@@ -31,7 +31,8 @@ namespace JewerlyWork.Functions.Actions
             };
 
             File.AppendAllText(path, type.ToString());
-            Console.WriteLine("Тип успешно добавлен!");
+            Console.WriteLine("Тип успешно добавлен!", Console.ForegroundColor = ConsoleColor.Green); 
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
             Console.Clear();
         }
@@ -53,7 +54,8 @@ namespace JewerlyWork.Functions.Actions
             readAllFile[stringNumber - 1] = String.Join(" ", certainString);
 
             File.WriteAllLines(path, readAllFile);
-            Console.WriteLine("Данные успешно обновлены!");
+            Console.WriteLine("Данные успешно обновлены!", Console.ForegroundColor = ConsoleColor.Green);
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
             Console.Clear();
         }
@@ -86,7 +88,8 @@ namespace JewerlyWork.Functions.Actions
 
                 File.AppendAllText(path, newLine.ToString() + Environment.NewLine);
             }
-            Console.WriteLine("Тип под номером " + stringNumber.ToString() + " удален.");
+            Console.WriteLine("Тип под номером " + stringNumber.ToString() + " удален.", Console.ForegroundColor = ConsoleColor.Green);
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(0);
             Thread.Sleep(3000);
             Console.Clear();

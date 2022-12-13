@@ -33,7 +33,8 @@ namespace JewerlyWork.Functions.Actions
             };
 
             File.AppendAllText(path, materialProduct.ToString());
-            Console.WriteLine("Материал успешно добавлен!");
+            Console.WriteLine("Материал успешно добавлен!", Console.ForegroundColor = ConsoleColor.Green);
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
             Console.Clear();
         }
@@ -52,12 +53,13 @@ namespace JewerlyWork.Functions.Actions
             var newData = Other.Validator.GetStringOnConsole("Пожалуйста, введите новые данные: ");
 
             certainString[action.ToLower() == "название" ? 3
-                                                        : 5] = newData;
+                                                         : 5] = newData;
 
             readAllFile[stringNumber - 1] = String.Join(" ", certainString);
 
             File.WriteAllLines(path, readAllFile);
-            Console.WriteLine("Данные успешно обновлены!");
+            Console.WriteLine("Данные успешно обновлены!", Console.ForegroundColor = ConsoleColor.Green);
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
             Console.Clear();
         }
@@ -93,7 +95,8 @@ namespace JewerlyWork.Functions.Actions
                 File.AppendAllText(path, newLine.ToString() + Environment.NewLine);
 
             }
-            Console.WriteLine("Материал под номером " + stringNumber.ToString() + " удален.");
+            Console.WriteLine("Материал под номером " + stringNumber.ToString() + " удален.", Console.ForegroundColor = ConsoleColor.Green);
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
             Console.Clear();
             Thread.Sleep(0);

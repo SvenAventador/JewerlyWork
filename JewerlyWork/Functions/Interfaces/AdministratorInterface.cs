@@ -26,6 +26,7 @@ namespace JewerlyWork.Functions.Interfaces
         {
             Console.Clear();
             START:
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Администратор системы. \n" +
                               "Выберите одну из опций: \n" +
                               "1) Просмотреть данные;\n" +
@@ -63,6 +64,7 @@ namespace JewerlyWork.Functions.Interfaces
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Введена неизвестная команда. Пожалуйста, попробуйте еще раз!");
                 goto START;
             }
@@ -83,6 +85,7 @@ namespace JewerlyWork.Functions.Interfaces
                               "6) Пользователь;\n" +
                               "7) Выход.\n");
             STARTRUN:
+            Console.ForegroundColor = ConsoleColor.Black;
             int choice2 = Validator.GetPrintNumberOnConsole("Итак, Ваш выбор: ");
             if ((choice2 == 1) ||
                 (choice2 == 2) ||
@@ -133,16 +136,19 @@ namespace JewerlyWork.Functions.Interfaces
                         if (_choice == 3)
                         {
                             START:
-                            int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToProduct.Length))
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Данная строчка не найдена. Попробуйте еще раз!");
                                 goto START;
                             }
 
                             START1:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var action = Validator.GetStringOnConsole("Введите то, что Вы хотите изменить (Название, Тип, Материал, Вес, Цена): ");
                             if ((action.ToLower() != "название") &&
                                 (action.ToLower() != "тип") &&
@@ -150,12 +156,14 @@ namespace JewerlyWork.Functions.Interfaces
                                 (action.ToLower() != "вес") &&
                                 (action.ToLower() != "цена"))
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START1;
                             }
 
                             Actions.ProductAction.UpdateDataProduct(PathData.pathToProduct, stringNumber, action);
                             START2:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть все изделия? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -172,6 +180,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START2;
                             }
@@ -179,17 +188,20 @@ namespace JewerlyWork.Functions.Interfaces
                         if (_choice == 4)
                         {
                             START:
-                            int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToProduct.Length))
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Данная строчка не найдена. Попробуйте еще раз!");
                                 goto START;
                             }
 
                             Actions.ProductAction.DeleteDataProduct(PathData.pathToProduct, stringNumber);
                             START1:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть все изделия? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -206,6 +218,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START1;
                             }
@@ -227,6 +240,7 @@ namespace JewerlyWork.Functions.Interfaces
                         {
                             Actions.MaterialProductAction.AddMaterial(PathData.pathToMaterialProduct);
                             START:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть все материалы? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -243,6 +257,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START;
                             }
@@ -250,26 +265,31 @@ namespace JewerlyWork.Functions.Interfaces
                         if (_choice == 3)
                         {
                             START:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToMaterialProduct.Length))
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Данная строчка не найдена. Попробуйте еще раз!");
                                 goto START;
                             }
 
                             START1:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var action = Other.Validator.GetStringOnConsole("Введите то, что хотите изменить (Название, цена): ");
 
                             if ((action.ToLower() != "название") &&
                                 (action.ToLower() != "цена"))
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неправильная команда. Попробуйте еще раз!");
                                 goto START1;
                             }
                             Actions.MaterialProductAction.UpdateDataMaterial(PathData.pathToMaterialProduct, stringNumber, action);
                             START2:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть все материалы? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -286,6 +306,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START2;
                             }
@@ -293,17 +314,20 @@ namespace JewerlyWork.Functions.Interfaces
                         if (_choice == 4)
                         {
                             START:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToMaterialProduct.Length))
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Данная строчка не найдена. Попробуйте еще раз!");
                                 goto START;
                             }
 
                             Actions.MaterialProductAction.DeleteDataMaterial(PathData.pathToMaterialProduct, stringNumber);
                             START1:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть все материалы? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -320,6 +344,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START1;
                             }
@@ -341,6 +366,7 @@ namespace JewerlyWork.Functions.Interfaces
                         {
                             Actions.ProductTypeAction.AddProductType(PathData.pathToProductType);
                             START:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть все типы изделий? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -357,6 +383,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START;
                             }
@@ -364,17 +391,20 @@ namespace JewerlyWork.Functions.Interfaces
                         if (_choice == 3)
                         {
                             START:
-                            int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToProductType.Length))
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Данная строчка не найдена. Попробуйте еще раз!");
                                 goto START;
                             }
 
                             Actions.ProductTypeAction.UpdateProductType(PathData.pathToProductType, stringNumber);
                             START1:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть все типы изделий? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -391,6 +421,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START1;
                             }
@@ -398,17 +429,20 @@ namespace JewerlyWork.Functions.Interfaces
                         if (_choice == 4)
                         {
                             START:
-                            int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToProductType.Length))
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Данная строчка не найдена. Попробуйте еще раз!");
                                 goto START;
                             }
 
                             Actions.ProductTypeAction.DeleteProductType(PathData.pathToProductType, stringNumber);
                             START1:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть все типы изделий? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -425,6 +459,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START1;
                             }
@@ -451,26 +486,31 @@ namespace JewerlyWork.Functions.Interfaces
                         if (_choice == 3)
                         {
                             START:
-                            int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToClient.Length))
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Данная строчка не найдена. Попробуйте еще раз!");
                                 goto START;
                             }
                             START1:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var action = Validator.GetStringOnConsole("Введите то, что Вы хотите изменить (Фамилия, Имя, Отчество): ");
 
                             if ((action.ToLower() != "фамилия") &&
                                 (action.ToLower() != "имя") &&
                                 (action.ToLower() != "отчество"))
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START1;
                             }
                             Actions.ClientAction.UpdateDataClient(PathData.pathToClient, stringNumber, action);
                             START2:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть всех клиентов? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -487,6 +527,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START2;
                             }
@@ -494,16 +535,19 @@ namespace JewerlyWork.Functions.Interfaces
                         if (_choice == 4)
                         {
                             START:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToClient.Length))
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Данная строчка не найдена. Попробуйте еще раз!");
                                 goto START;
                             }
                             Actions.ClientAction.DeleteDataClient(PathData.pathToClient, stringNumber);
                             START1:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть всех клиентов? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -520,6 +564,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START1;
                             }
@@ -552,17 +597,20 @@ namespace JewerlyWork.Functions.Interfaces
                         if (_choice == 4)
                         {
                             START:
-                            int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToProductSale.Length))
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Данная строчка не найдена. Попробуйте еще раз!");
                                 goto START;
                             }
 
                             Actions.ProductSaleAction.DeleteDataOrder(PathData.pathToProductSale, stringNumber);
                             START2:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть все заказы? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -579,6 +627,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START2;
                             }
@@ -603,6 +652,7 @@ namespace JewerlyWork.Functions.Interfaces
 
                             UserAction.AddUser(PathData.pathToUsers, login, password, "Client");
                             START:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть всех пользователей? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -619,6 +669,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START;
                             }
@@ -715,6 +766,7 @@ namespace JewerlyWork.Functions.Interfaces
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Введена неизвестная команда. Пожалуйста, попробуйте еще раз!");
                 goto STARTRUN;
             }

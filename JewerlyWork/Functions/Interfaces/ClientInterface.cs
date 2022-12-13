@@ -23,6 +23,7 @@ namespace JewerlyWork.Functions.Interfaces
         public static void ClientInterfaces(string login)
         {
             START1:
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();
             Console.WriteLine($"Добро пожаловать, {login}, в наш магазин ювелирных изделий. \n" +
                               $"Вы являетесь нашим постоянным покупателем?");
@@ -57,6 +58,7 @@ namespace JewerlyWork.Functions.Interfaces
 
                 if (!(fioFlag))
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Вы уверены, что являетесь нашим постоянным покупателем? Вас нет в нашей базе. Попробуйте ввести данные еще раз!");
                     Thread.Sleep(3000);
                     goto START1;
@@ -70,17 +72,19 @@ namespace JewerlyWork.Functions.Interfaces
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Неизвестная команда. Попробуйте еще раз.");
                 Thread.Sleep(3000);
                 goto START1;
             }
 
             START:
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Дорогой клиент. Что Вы хотите сделать?\n" +
                               "1) Просмотреть товары;\n" +
                               "2) Приобрести товары;\n" +
                               "3) Выход.\n");
-            int choiseAction = Other.Validator.GetPrintNumberOnConsole("Итак, Ваш выбор: ");
+            var choiseAction = Other.Validator.GetPrintNumberOnConsole("Итак, Ваш выбор: ");
 
             if ((choiseAction == 1) ||
                 (choiseAction == 2) ||
@@ -103,6 +107,7 @@ namespace JewerlyWork.Functions.Interfaces
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Введена неизвестная команда. Пожалуйста, попробуйте еще раз!");
                 goto START;
             }
@@ -117,6 +122,7 @@ namespace JewerlyWork.Functions.Interfaces
             {
                 case 1:
                     START:
+                    Console.ForegroundColor = ConsoleColor.Black;
                     Console.Clear();
                     Console.WriteLine("Выберите объект работы: \n" +
                           "1) Изделие;\n" +
@@ -163,6 +169,7 @@ namespace JewerlyWork.Functions.Interfaces
 
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Введена неизвестная команда. Пожалуйста, попробуйте еще раз!");
                         goto START;
                     }

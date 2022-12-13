@@ -37,7 +37,8 @@ namespace JewerlyWork.Functions.Actions
             };
 
             File.AppendAllText(path, client.ToString(), Encoding.UTF8);
-            Console.WriteLine("Данные успешно добавлены!");
+            Console.WriteLine("Данные успешно добавлены!", Console.ForegroundColor = ConsoleColor.Green);
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
             Console.Clear();
         }
@@ -62,7 +63,8 @@ namespace JewerlyWork.Functions.Actions
             readAllFile[stringNumber - 1] = String.Join(" ", certainString);
 
             File.WriteAllLines(path, readAllFile, Encoding.UTF8);
-            Console.WriteLine("Данные успешно обновлены!");
+            Console.WriteLine("Данные успешно обновлены!", Console.ForegroundColor = ConsoleColor.Green);
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
             Console.Clear();
         }
@@ -99,7 +101,8 @@ namespace JewerlyWork.Functions.Actions
 
             }
             Thread.Sleep(0);
-            Console.WriteLine("Клиент под номером " + stringNumber.ToString() + " удален.");
+            Console.WriteLine("Клиент под номером " + stringNumber.ToString() + " удален.", Console.ForegroundColor = ConsoleColor.Green);
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
             Console.Clear();
         }

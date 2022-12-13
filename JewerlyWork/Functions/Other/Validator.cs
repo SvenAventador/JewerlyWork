@@ -24,8 +24,8 @@ namespace JewerlyWork.Functions.Other
             var value = 0;
             while (!int.TryParse(Console.ReadLine(), out value))
             {
-                Console.WriteLine("Пожалуйста, введите число! Введите данные еще раз.");
-                Console.Write(message);
+                Console.WriteLine("Пожалуйста, введите число! Введите данные еще раз.", Console.ForegroundColor = ConsoleColor.Red);
+                Console.Write(message, Console.ForegroundColor = ConsoleColor.Black);
             }
 
             return value;
@@ -43,8 +43,8 @@ namespace JewerlyWork.Functions.Other
             var value = 0M;
             while (!decimal.TryParse(Console.ReadLine(), out value))
             {
-                Console.WriteLine("Пожалуйста, введите денежное значение! Введите данные еще раз.");
-                Console.Write(message);
+                Console.WriteLine("Пожалуйста, введите денежное значение! Введите данные еще раз.", Console.ForegroundColor = ConsoleColor.Red);
+                Console.Write(message, Console.ForegroundColor = ConsoleColor.Black);
             }
 
             return value;
@@ -58,6 +58,7 @@ namespace JewerlyWork.Functions.Other
         public static DateTime GetPrintDateOnConsole(string message)
         {
             START:
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.Write(message);
             var yourDate = Console.ReadLine();
             var dateFormat = "yyyy-MM-dd";
@@ -69,6 +70,7 @@ namespace JewerlyWork.Functions.Other
                                          DateTimeStyles.None,
                                          out sheduleDate))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Дата рождения должна быть внесена следующим форматом: {dateFormat}");
                 goto START;
             }
@@ -84,11 +86,13 @@ namespace JewerlyWork.Functions.Other
         public static string GetStringOnConsole(string message)
         {
             START:
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.Write(message);
             var value = Console.ReadLine();
 
             if (string.IsNullOrEmpty(value))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Пожалуйста, введите значение!");
                 goto START;
             }

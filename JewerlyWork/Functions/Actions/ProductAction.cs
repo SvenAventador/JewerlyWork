@@ -46,6 +46,7 @@ namespace JewerlyWork.Functions.Actions
 
             if (!(typeFlag))
             {
+                Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine("Такого типа не найдено. Попробуйте еще раз!");
                 goto START;
             }
@@ -76,6 +77,7 @@ namespace JewerlyWork.Functions.Actions
 
             if (!(materialFlag))
             {
+                Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine("Данного материала не найдено. Пожалуйста, введите данные еще раз!");
                 goto START1;
             }
@@ -97,7 +99,8 @@ namespace JewerlyWork.Functions.Actions
             };
 
             File.AppendAllText(path, product.ToString());
-            Console.WriteLine("Изделие успешно добавлено!");
+            Console.WriteLine("Изделие успешно добавлено!", Console.ForegroundColor = ConsoleColor.Green);
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
             Console.Clear();
         }
@@ -114,18 +117,107 @@ namespace JewerlyWork.Functions.Actions
             var readAllFile = File.ReadAllLines(path);
             var certainString = readAllFile.Skip(stringNumber - 1).First().Split(' ');
 
-            var newData = Other.Validator.GetStringOnConsole("Пожалуйста, введите новые данные: ");
-
-            certainString[action.ToLower() == "название" ? 3
+            var index = (action.ToLower() == "название") ? 3
                                                          : (action.ToLower() == "тип") ? 5
-                                                                                      : (action.ToLower() == "материал") ? 7
-                                                                                                                         : (action.ToLower() == "вес") ? 9
-                                                                                                                                                       : 11] = newData;
+                                                                                       : (action.ToLower() == "материал") ? 7
+                                                                                                                          : (action.ToLower() == "вес") ? 9
+                                                                                                                                                        : 11;
+
+            if (index == 3)
+            {
+                var newData = Other.Validator.GetStringOnConsole("Пожалуйста, введите новые данные: ");
+                certainString[index] = newData;
+            }
+
+            else if (index == 5)
+            {
+                Console.WriteLine("Список типов изделий: ");
+                using (var sR = new StreamReader(Other.PathData.pathToProductType))
+                {
+                    Console.WriteLine(sR.ReadToEnd());
+                }
+                START:
+                Console.ForegroundColor = ConsoleColor.Black;
+                var newData = Other.Validator.GetStringOnConsole("Пожалуйста, введите новые данные: ");
+                var newDataFlag = false;
+                var readType = File.ReadAllLines(Other.PathData.pathToProductType);
+
+                foreach (var item in readType)
+                {
+                    var dataArray = item.Split(' ');
+
+                    if (newData == dataArray[3])
+                    {
+                        newDataFlag = true;
+                        break;
+                    }
+                    else
+                        newDataFlag = false;
+                }
+
+                if (!(newDataFlag))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Такого типа нет! Попробуйте еще раз!");
+                    goto START;
+                }
+
+                certainString[index] = newData;
+            }
+
+            else if (index == 7)
+            {
+                Console.WriteLine("Список материала изделий: ");
+                using (var sR = new StreamReader(Other.PathData.pathToMaterialProduct))
+                {
+                    Console.WriteLine(sR.ReadToEnd());
+                }
+                START:
+                Console.ForegroundColor = ConsoleColor.Black;
+                var newData = Other.Validator.GetStringOnConsole("Пожалуйста, введите новые данные: ");
+                var newDataFlag = false;
+                var readMaterial = File.ReadAllLines(Other.PathData.pathToMaterialProduct);
+
+                foreach (var item in readMaterial)
+                {
+                    var dataArray = item.Split(' ');
+
+                    if (newData == dataArray[3])
+                    {
+                        newDataFlag = true;
+                        break;
+                    }
+                    else
+                        newDataFlag = false;
+                }
+
+                if (!(newDataFlag))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Такого материала нет! Попробуйте еще раз!");
+                    goto START;
+                }
+
+                certainString[index] = newData;
+            }
+
+            else if (index == 9)
+            {
+                var newData = Other.Validator.GetStringOnConsole("Пожалуйста, введите новые данные: ");
+                certainString[index] = newData;
+            }
+
+            else
+            {
+                var newData = Other.Validator.GetStringOnConsole("Пожалуйста, введите новые данные: ");
+                certainString[index] = newData;
+            }
 
             readAllFile[stringNumber - 1] = String.Join(" ", certainString);
 
             File.WriteAllLines(path, readAllFile);
-            Console.WriteLine("Данные успешно обновлены!");
+            Console.WriteLine("Данные успешно обновлены!", Console.ForegroundColor = ConsoleColor.Green);
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
             Console.Clear();
         }
@@ -162,7 +254,8 @@ namespace JewerlyWork.Functions.Actions
 
             }
             Thread.Sleep(0);
-            Console.WriteLine("Изделие под номером " + stringNumber.ToString() + " удален.");
+            Console.WriteLine("Изделие под номером " + stringNumber.ToString() + " удален.", Console.ForegroundColor = ConsoleColor.Green);
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
             Console.Clear();
         }

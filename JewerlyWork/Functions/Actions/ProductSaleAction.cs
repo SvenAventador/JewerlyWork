@@ -21,12 +21,14 @@ namespace JewerlyWork.Functions.Actions
         {
             var readFile = File.ReadAllLines(path);
             START:
+            Console.ForegroundColor = ConsoleColor.Black;
             var fio = Other.Validator.GetStringOnConsole("Пожалуйста, введите Ваше ФИО: ");
             var readClient = File.ReadAllLines(Other.PathData.pathToClient);
             var clientFlag = false;
 
             if (fio.Split(' ').GetLength(0) != 3)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Вы должны ввести Фамилию Имя Отчество. Попробуйте еще раз!");
                 goto START;
             }
@@ -48,6 +50,7 @@ namespace JewerlyWork.Functions.Actions
 
             if (!(clientFlag))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Таких данных не найдено в системе. Введите данные еще раз!");
                 goto START;
             }
@@ -57,6 +60,7 @@ namespace JewerlyWork.Functions.Actions
                 Console.WriteLine(sR.ReadToEnd());
             }
             START1:
+            Console.ForegroundColor = ConsoleColor.Black;
             var name = Other.Validator.GetStringOnConsole("Пожалуйста, введите наименование: ");
             var readName = File.ReadAllLines(Other.PathData.pathToProduct);
             var nameFlag = false;
@@ -76,6 +80,7 @@ namespace JewerlyWork.Functions.Actions
 
             if (!(nameFlag))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("У нас не найден такой товар. Попробуйте ввести данные еще раз!");
                 goto START1;
             }
@@ -83,9 +88,10 @@ namespace JewerlyWork.Functions.Actions
             var count = Other.Validator.GetPrintNumberOnConsole("Пожалуйста, введите количество изделия: ");
 
             START2:
+            Console.ForegroundColor = ConsoleColor.Black;
             var price = Other.Validator.GetPrintMoneyOnConsole("Пожалуйста, введите цену товара, которая указана на прилавке: ");
             var readPrice = File.ReadAllLines(Other.PathData.pathToProduct);
-            var flag = false;
+            var priceFlag = false;
 
             foreach (var item in readPrice)
             {
@@ -94,15 +100,16 @@ namespace JewerlyWork.Functions.Actions
                 if ((name == dataArray[3]) &&
                     (price.ToString() == dataArray[11]))
                 {
-                    flag = true;
+                    priceFlag = true;
                     break;
                 }
                 else
-                    flag = false;
+                    priceFlag = false;
             }
 
-            if (!(flag))
+            if (!(priceFlag))
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Не пытайтесь нас обмануть! Данного ценника нет на прилавке! Введите данные еще раз!");
                 goto START2;
             }
@@ -122,7 +129,7 @@ namespace JewerlyWork.Functions.Actions
             };
 
             File.AppendAllText(path, productSale.ToString());
-            Console.WriteLine("Заказ успешно оформлен!");
+            Console.WriteLine("Заказ успешно оформлен!", Console.ForegroundColor = ConsoleColor.Green);
 
             var amount = 0M;
             var readAllLines = File.ReadAllLines(path);
@@ -164,7 +171,7 @@ namespace JewerlyWork.Functions.Actions
                 for (var i = 0; i < dataArray.Length; i++)
                 {
                     newLine += i == 1 ? numberLine.ToString() + " "
-                                       : dataArray[i] + " ";
+                                      : dataArray[i] + " ";
                 }
 
                 Console.Write(newLine);
@@ -172,7 +179,8 @@ namespace JewerlyWork.Functions.Actions
                 File.AppendAllText(path, newLine.ToString() + Environment.NewLine);
 
             }
-            Console.WriteLine("Изделие под номером " + stringNumber.ToString() + " удален.");
+            Console.WriteLine("Изделие под номером " + stringNumber.ToString() + " удален.", Console.ForegroundColor = ConsoleColor.Green);
+            Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
             Console.Clear();
             Thread.Sleep(0);

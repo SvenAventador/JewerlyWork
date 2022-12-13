@@ -28,8 +28,10 @@ namespace JewerlyWork
             var login = "";
             var password = "";
             START:
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();
             START1:
+            Console.ForegroundColor = ConsoleColor.Black;
 
             Console.WriteLine("Добро пожаловать в магазин ювелирных изделий. \n" +
                               "Пожалуйста, зарегистрируйтесь или авторизируйтесь в нашей сестеме! \n" +
@@ -82,6 +84,7 @@ namespace JewerlyWork
 
                         if (!(isEntry))
                         {
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Такой аккаунт не найден. Попробуйте еще раз!");
                             Thread.Sleep(2000);
                             Console.Clear();
@@ -92,7 +95,8 @@ namespace JewerlyWork
                     #endregion.
                     case 3:
                         #region Выход из приложения.
-                        Console.WriteLine("До скорых встреч, мой дорогой друг");
+                        Console.WriteLine("До скорых встреч, мой дорогой друг", Console.ForegroundColor = ConsoleColor.Green);
+                        Console.ForegroundColor = ConsoleColor.Black;
                         Thread.Sleep(1000);
                         Environment.Exit(0);
                         break;
@@ -101,6 +105,7 @@ namespace JewerlyWork
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Была введена неверная команда. Попробуйте еще раз!");
                 Thread.Sleep(2000);
                 Console.Clear();
