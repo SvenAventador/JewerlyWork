@@ -17,6 +17,21 @@ namespace JewerlyWork.Functions.Interfaces
         private static int _choise;
 
         /// <summary>
+        /// Имя.
+        /// </summary>
+        private static string _name;
+
+        /// <summary>
+        /// Фамилия.
+        /// </summary>
+        private static string _surname;
+
+        /// <summary>
+        /// Отчество.
+        /// </summary>
+        private static string _patronymic;
+
+        /// <summary>
         /// Интерфейс клиента.
         /// </summary>
         /// <param name="login"> Логин клиента. </param>
@@ -32,9 +47,9 @@ namespace JewerlyWork.Functions.Interfaces
             if (answer.ToLower() == "да")
             {
                 var readClient = File.ReadAllLines(Other.PathData.pathToClient);
-                var surname = Other.Validator.GetStringOnConsole("Пожалуйста, введите Вашу фамилию для проверки: ");
-                var name = Other.Validator.GetStringOnConsole("Пожалуйста, введите Ваше имя для проверки: ");
-                var patronymic = Other.Validator.GetStringOnConsole("Пожалуйста, введите Ваше отчество для проверки: ");
+                _surname = Other.Validator.GetStringOnConsole("Пожалуйста, введите Вашу фамилию для проверки: ");
+                _name = Other.Validator.GetStringOnConsole("Пожалуйста, введите Ваше имя для проверки: ");
+                _patronymic = Other.Validator.GetStringOnConsole("Пожалуйста, введите Ваше отчество для проверки: ");
                 var fioFlag = false;
 
                 foreach (var item in readClient)
@@ -42,11 +57,11 @@ namespace JewerlyWork.Functions.Interfaces
                     var dataArray = item.Split(' ');
 
                     if (
-                        ($"{surname.ToLower()} {name.ToLower()} {patronymic.ToLower()}")
+                        ($"{_surname.ToLower()} {_name.ToLower()} {_patronymic.ToLower()}")
                         ==
                         ($"{dataArray[3].ToLower()} {dataArray[5].ToLower()} {dataArray[7].ToLower()}"))
                     {
-                        Console.WriteLine($"Добро пожаловать, {name} {patronymic}!");
+                        Console.WriteLine($"Добро пожаловать, {_name} {_patronymic}!");
                         Thread.Sleep(3000);
                         Console.Clear();
                         fioFlag = true;
@@ -69,6 +84,7 @@ namespace JewerlyWork.Functions.Interfaces
             {
                 Functions.Actions.ClientAction.AddClient(Other.PathData.pathToClient);
                 Console.Clear();
+                goto START1;
             }
             else
             {
@@ -178,7 +194,7 @@ namespace JewerlyWork.Functions.Interfaces
 
                     break;
                 case 2:
-                    Actions.ProductSaleAction.AddOrder(Other.PathData.pathToProductSale);
+                    Actions.ProductSaleAction.AddOrder(Other.PathData.pathToProductSale, _surname, _name, _patronymic);
                     break;
             }
 

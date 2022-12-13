@@ -17,104 +17,26 @@ namespace JewerlyWork.Functions.Actions
         /// Оформление заказа.
         /// </summary>
         /// <param name="path"> Путь к файлу. </param>
-        public static void AddOrder(string path)
+        public static void AddOrder(string path, string surname, string name, string patronymic)
         {
             var readFile = File.ReadAllLines(path);
-            START:
             Console.ForegroundColor = ConsoleColor.Black;
-            var fio = Other.Validator.GetStringOnConsole("Пожалуйста, введите Ваше ФИО: ");
-            var readClient = File.ReadAllLines(Other.PathData.pathToClient);
-            var clientFlag = false;
-
-            if (fio.Split(' ').GetLength(0) != 3)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Вы должны ввести Фамилию Имя Отчество. Попробуйте еще раз!");
-                goto START;
-            }
-
-            foreach (var item in readClient)
-            {
-                var dataArray = item.Split(' ');
-
-                if (($"{fio.ToLower()}")
-                    ==
-                    ($"{dataArray[3].ToLower()} {dataArray[5].ToLower()} {dataArray[7].ToLower()}"))
-                {
-                    clientFlag = true;
-                    break;
-                }
-                else
-                    clientFlag = false;
-            }
-
-            if (!(clientFlag))
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Таких данных не найдено в системе. Введите данные еще раз!");
-                goto START;
-            }
+            var fio = $"{surname} {name} {patronymic}";
 
             using (var sR = new StreamReader(Other.PathData.pathToProduct))
             {
                 Console.WriteLine(sR.ReadToEnd());
             }
-            START1:
+
             Console.ForegroundColor = ConsoleColor.Black;
-            var name = Other.Validator.GetStringOnConsole("Пожалуйста, введите наименование: ");
-            var readName = File.ReadAllLines(Other.PathData.pathToProduct);
-            var nameFlag = false;
 
-            foreach (var item in readName)
-            {
-                var dataArray = item.Split(' ');
-
-                if (name == dataArray[3])
-                {
-                    nameFlag = true;
-                    break;
-                }
-                else
-                    nameFlag = false;
-            }
-
-            if (!(nameFlag))
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("У нас не найден такой товар. Попробуйте ввести данные еще раз!");
-                goto START1;
-            }
+            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Пожалуйста, введите номер товара, который Вы хотите купить: ");
+            var readProduct = File.ReadAllLines(Other.PathData.pathToProduct);
+            var certainString = readProduct.Skip(stringNumber - 1).First().Split(' ');
 
             var count = Other.Validator.GetPrintNumberOnConsole("Пожалуйста, введите количество изделия: ");
 
-            START2:
-            Console.ForegroundColor = ConsoleColor.Black;
-            var price = Other.Validator.GetPrintMoneyOnConsole("Пожалуйста, введите цену товара, которая указана на прилавке: ");
-            var readPrice = File.ReadAllLines(Other.PathData.pathToProduct);
-            var priceFlag = false;
-
-            foreach (var item in readPrice)
-            {
-                var dataArray = item.Split(' ');
-
-                if ((name == dataArray[3]) &&
-                    (price.ToString() == dataArray[11]))
-                {
-                    priceFlag = true;
-                    break;
-                }
-                else
-                    priceFlag = false;
-            }
-
-            if (!(priceFlag))
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Не пытайтесь нас обмануть! Данного ценника нет на прилавке! Введите данные еще раз!");
-                goto START2;
-            }
-
-            price = price * count * 0.97M;
+            var price = Convert.ToInt32(certainString[11]) * count * 0.97M;
 
             var productSale = new Classes.ProductSale()
             {
@@ -123,7 +45,7 @@ namespace JewerlyWork.Functions.Actions
                                                             .Last()
                                                             .Split(' ')[1]) + 1,
                 FIO = fio,
-                ProductName = name,
+                ProductName = certainString[3],
                 ProductCount = count,
                 AllPrice = price
             };
