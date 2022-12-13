@@ -12,6 +12,7 @@ namespace JewerlyWork.Classes
     public class User
     {
         #region Поля и свойства
+
         private int _id;
         /// <summary>
         /// Идентификатор.

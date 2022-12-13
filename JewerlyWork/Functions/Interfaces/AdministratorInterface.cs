@@ -113,6 +113,7 @@ namespace JewerlyWork.Functions.Interfaces
                         {
                             Actions.ProductAction.AddProduct(PathData.pathToProduct);
                             START:
+                            Console.ForegroundColor = ConsoleColor.Black;
                             var answer = Validator.GetStringOnConsole("Хотите просмотреть все изделия? Ваш ответ: ");
                             if (answer.ToLower() == "да")
                             {
@@ -129,6 +130,7 @@ namespace JewerlyWork.Functions.Interfaces
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Введена неверная команда. Попробуйте еще раз!");
                                 goto START;
                             }
@@ -189,7 +191,7 @@ namespace JewerlyWork.Functions.Interfaces
                         {
                             START:
                             Console.ForegroundColor = ConsoleColor.Black;
-                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
+                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите удалить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToProduct.Length))
@@ -315,7 +317,7 @@ namespace JewerlyWork.Functions.Interfaces
                         {
                             START:
                             Console.ForegroundColor = ConsoleColor.Black;
-                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
+                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите удалить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToMaterialProduct.Length))
@@ -430,7 +432,7 @@ namespace JewerlyWork.Functions.Interfaces
                         {
                             START:
                             Console.ForegroundColor = ConsoleColor.Black;
-                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
+                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите удалить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToProductType.Length))
@@ -479,7 +481,7 @@ namespace JewerlyWork.Functions.Interfaces
                         }
                         if (_choice == 2)
                         {
-                            Console.WriteLine("Вы не можете добавить клиента в нашу систему!");
+                            Console.WriteLine("Вы не можете добавить клиента в нашу систему!", Console.ForegroundColor = ConsoleColor.Red;);
                             Thread.Sleep(3000);
                             Console.Clear();
                         }
@@ -536,7 +538,7 @@ namespace JewerlyWork.Functions.Interfaces
                         {
                             START:
                             Console.ForegroundColor = ConsoleColor.Black;
-                            int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
+                            int stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите удалить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToClient.Length))
@@ -584,13 +586,13 @@ namespace JewerlyWork.Functions.Interfaces
                         }
                         if (_choice == 2)
                         {
-                            Console.WriteLine("Вы не можете добавить заказ в нашу систему!");
+                            Console.WriteLine("Вы не можете добавить заказ в нашу систему!", Console.ForegroundColor = ConsoleColor.Red;);
                             Thread.Sleep(3000);
                             Console.Clear();
                         }
                         if (_choice == 3)
                         {
-                            Console.WriteLine("Вы не можете изменить заказ в нашей систему!");
+                            Console.WriteLine("Вы не можете изменить заказ в нашей систему!", Console.ForegroundColor = ConsoleColor.Red;);
                             Thread.Sleep(3000);
                             Console.Clear();
                         }
@@ -598,7 +600,7 @@ namespace JewerlyWork.Functions.Interfaces
                         {
                             START:
                             Console.ForegroundColor = ConsoleColor.Black;
-                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите изменить: ");
+                            var stringNumber = Other.Validator.GetPrintNumberOnConsole("Введите номер строчки, которую хотите удалить: ");
 
                             if ((stringNumber < 1) ||
                                 (stringNumber > PathData.pathToProductSale.Length))
@@ -681,7 +683,8 @@ namespace JewerlyWork.Functions.Interfaces
                             START:
                             var stringNumber = Validator.GetPrintNumberOnConsole("Введите номер пользователя, данные которого Вы хотите изменить: ");
 
-                            if (stringNumber < 1 || stringNumber > PathData.pathToUsers.Length)
+                            if ((stringNumber < 1) || 
+                                (stringNumber > PathData.pathToUsers.Length))
                             {
                                 Console.WriteLine("Данный пользователь не найден. Введите данные еще раз!");
                                 goto START;
@@ -724,9 +727,10 @@ namespace JewerlyWork.Functions.Interfaces
                         if (_choice == 4)
                         {
                             START:
-                            var stringNumber = Validator.GetPrintNumberOnConsole("Введите номер пользователя, данные которого Вы хотите изменить: ");
+                            var stringNumber = Validator.GetPrintNumberOnConsole("Введите номер пользователя, данные которого Вы хотите удалить: ");
 
-                            if (stringNumber < 1 || stringNumber > PathData.pathToUsers.Length)
+                            if ((stringNumber < 1) || 
+                                (stringNumber > PathData.pathToUsers.Length))
                             {
                                 Console.WriteLine("Данный пользователь не найден. Введите данные еще раз!");
                                 goto START;

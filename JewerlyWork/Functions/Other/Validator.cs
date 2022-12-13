@@ -12,6 +12,8 @@ namespace JewerlyWork.Functions.Other
     /// </summary>
     public static class Validator
     {
+        #region Методы валидации.
+
         /// <summary>
         /// Проверка на то, было ли введено в консоль число.
         /// </summary>
@@ -99,5 +101,7 @@ namespace JewerlyWork.Functions.Other
 
             return value;
         }
+
+        #endregion
     }
 }

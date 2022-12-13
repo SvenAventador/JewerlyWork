@@ -77,8 +77,17 @@ namespace JewerlyWork.Functions.Actions
         /// <param name="stringNumber"> Номер строки. </param>
         public static void DeleteDataOrder(string path, int stringNumber)
         {
-            var readAllFile = File.ReadAllLines(path).ToList();
+            var readAllFile = File.ReadAllLines(path, Encoding.UTF8).ToList();
+            var readlProductSaleAmount = File.ReadAllLines(path, Encoding.UTF8);
+            var readProductSalePrice = File.ReadAllLines(path, Encoding.UTF8);
+            var readProductSale = File.ReadAllLines(path, Encoding.UTF8);
 
+            var amountString = readlProductSaleAmount.First().Split(' ');
+            var certainString = readProductSalePrice.Skip(stringNumber + 1).First().Split(' ');
+
+            var amount = Convert.ToDecimal(amountString[2]) - Convert.ToDecimal(certainString[15]);
+
+            readAllFile.RemoveAt(0);
             readAllFile.RemoveAt(stringNumber - 1);
             var numberLine = 0;
 
@@ -96,11 +105,37 @@ namespace JewerlyWork.Functions.Actions
                                       : dataArray[i] + " ";
                 }
 
-                Console.Write(newLine);
-                Console.WriteLine();
-                File.AppendAllText(path, newLine.ToString() + Environment.NewLine);
-
+                File.AppendAllText(path, newLine.ToString() + Environment.NewLine, Encoding.UTF8);
             }
+
+            var allData = readAllFile.ToList();
+            File.WriteAllText(path, string.Empty);
+
+            var newNumberLine = 0;
+
+            foreach (var item in allData)
+            {
+                if (item.StartsWith('О'))
+                    continue;
+
+                newNumberLine++;
+                var newLine = "";
+                var dataArray = item.Split(' ');
+
+                for (var i = 0; i < dataArray.Length; i++)
+                {
+                    newLine += i == 1 ? newNumberLine.ToString() + " "
+                                      : dataArray[i] + " ";
+                }
+
+                File.AppendAllText(path, newLine.ToString() + Environment.NewLine, Encoding.UTF8);
+            }
+
+            var lastListArray = File.ReadAllLines(path).ToList();
+            var value = $"Общая выручка: {amount} рублей.";
+            lastListArray.Insert(0, value);
+            File.WriteAllLines(path, lastListArray, Encoding.UTF8);
+
             Console.WriteLine("Изделие под номером " + stringNumber.ToString() + " удален.", Console.ForegroundColor = ConsoleColor.Green);
             Console.ForegroundColor = ConsoleColor.Black;
             Thread.Sleep(3000);
