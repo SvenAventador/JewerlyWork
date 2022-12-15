@@ -245,7 +245,7 @@ namespace JewerlyWork.Functions.Actions
                 for (var i = 0; i < dataArray.Length; i++)
                 {
                     newLine += i == 1 ? numberLine.ToString() + " "
-                                       : dataArray[i] + " ";
+                                      : dataArray[i] + " ";
                 }
 
                 Console.Write(newLine);

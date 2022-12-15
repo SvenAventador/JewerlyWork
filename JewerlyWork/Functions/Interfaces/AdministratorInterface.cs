@@ -481,7 +481,7 @@ namespace JewerlyWork.Functions.Interfaces
                         }
                         if (_choice == 2)
                         {
-                            Console.WriteLine("Вы не можете добавить клиента в нашу систему!", Console.ForegroundColor = ConsoleColor.Red;);
+                            Console.WriteLine("Вы не можете добавить клиента в нашу систему!", Console.ForegroundColor = ConsoleColor.Red);
                             Thread.Sleep(3000);
                             Console.Clear();
                         }
@@ -586,13 +586,13 @@ namespace JewerlyWork.Functions.Interfaces
                         }
                         if (_choice == 2)
                         {
-                            Console.WriteLine("Вы не можете добавить заказ в нашу систему!", Console.ForegroundColor = ConsoleColor.Red;);
+                            Console.WriteLine("Вы не можете добавить заказ в нашу систему!", Console.ForegroundColor = ConsoleColor.Red);
                             Thread.Sleep(3000);
                             Console.Clear();
                         }
                         if (_choice == 3)
                         {
-                            Console.WriteLine("Вы не можете изменить заказ в нашей систему!", Console.ForegroundColor = ConsoleColor.Red;);
+                            Console.WriteLine("Вы не можете изменить заказ в нашей систему!", Console.ForegroundColor = ConsoleColor.Red);
                             Thread.Sleep(3000);
                             Console.Clear();
                         }
